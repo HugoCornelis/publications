@@ -1,0 +1,17 @@
+#!/usr/bin/perl -w
+#!/usr/bin/perl -w -d:ptkdb
+#!
+
+
+use strict;
+
+system "neurospaces_sync --enable publications --regex publications --verbose";
+
+if ($?)
+{
+    die "*** Error: $0, $?";
+}
+else
+{
+    system "neurospaces_update --enable publications --regex publications --verbose";
+}

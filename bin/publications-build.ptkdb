@@ -1,0 +1,44 @@
+$files = {
+           '_<bin/userdocs-build' => [
+                                       {
+                                         'expr' => undef,
+                                         'value' => '1',
+                                         'text' => '		my $error = $document->$operation( { verbose => $option_verbose, }, );
+',
+                                         'fname' => 'bin/userdocs-build',
+                                         'type' => 'user',
+                                         'line' => 149
+                                       }
+                                     ],
+           '_<perl/GENESIS3/Documentation.pm' => [
+                                                   {
+                                                     'expr' => undef,
+                                                     'value' => '1',
+                                                     'text' => '	my $related_tags = $self->related_tags();
+',
+                                                     'fname' => 'perl/GENESIS3/Documentation.pm',
+                                                     'type' => 'user',
+                                                     'line' => '1008'
+                                                   }
+                                                 ]
+         };
+$expr_list = [
+               {
+                 'expr' => '$document',
+                 'depth' => -1
+               },
+               {
+                 'expr' => '`pwd`',
+                 'depth' => -1
+               },
+               {
+                 'expr' => '$document_name',
+                 'depth' => -1
+               },
+               {
+                 'expr' => '$operation',
+                 'depth' => -1
+               }
+             ];
+$eval_saved_text = undef;
+$main_win_geometry = '1592x1114+0+0';

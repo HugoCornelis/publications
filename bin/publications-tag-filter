@@ -1,0 +1,118 @@
+#!/usr/bin/perl -w 
+#!/usr/bin/perl -w -d:ptkdb
+#
+
+
+use strict;
+
+
+use YAML;
+
+
+sub tag_filter
+{
+    my $filename = shift;
+
+    my $selector_tags = shift;
+
+    # default result: not selected
+
+    my $result = 0;
+
+    # convert the selected tags to a hash with false values
+
+    my $selected_tags
+	= {
+	   map
+	   {
+	       $_ => 0,
+	   }
+	   @$selector_tags,
+	  };
+
+    # load the document descriptor
+
+    my $descriptor = YAML::LoadFile($filename);
+
+    # loop over document tags
+
+    my $tags = $descriptor->{tags};
+
+    foreach (@$tags)
+    {
+	# set the selected tag
+
+	$selected_tags->{$_} = 1;
+    }
+
+    # if all selected flags are true
+
+    my $sum = 0;
+
+    map
+    {
+	$sum += $_
+    }
+	values %$selected_tags;
+
+    if (scalar keys %$selected_tags eq $sum)
+    {
+	# the document is selected
+
+	return 1;
+    }
+
+    # if there is one selector flag false
+
+    else
+    {
+	# the document must be filtered
+
+	return 0;
+    }
+}
+
+
+sub main
+{
+    #t this should come from a query using neurospaces_build because
+    #t it is the only one that knows about the project layout.
+
+    my $publications_source = "$ENV{HOME}/neurospaces_project/publications/source/snapshots/0";
+
+    my $selected_tags = [ @ARGV, ];
+
+    if (!defined $selected_tags)
+    {
+	die "$0: please give a tag value on the command line";
+    }
+
+    my $all_documentation_descriptors
+	= [
+	   map
+	   {
+	       chomp; $_
+	   }
+	   `find $publications_source -name "descriptor.yml"`,
+	  ];
+
+    my $all_documentation_tag_filtered
+	= [
+	   map
+	   {
+	       s(/descriptor.yml$)()i; $_;
+	   }
+	   grep
+	   {
+	       tag_filter($_, $selected_tags);
+	   }
+	   @$all_documentation_descriptors,
+	  ];
+
+    print Dump($all_documentation_tag_filtered);
+}
+
+
+main();
+
+
