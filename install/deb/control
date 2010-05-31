@@ -1,0 +1,11 @@
+Source: publications
+Section: Science 
+Priority: publications
+Maintainer: Hugo Cornelis [hugo.cornelis@gmail.com]
+Build-Depends: perl(>=5.8)
+Homepage: http://www.neurospaces.org
+
+Package: publications
+Architecture: any
+Depends: perl(>=5.8)
+Description: This is the neurospaces publications database.
