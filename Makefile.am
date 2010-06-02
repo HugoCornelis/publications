@@ -37,7 +37,7 @@ clean-local: website-clean
 	$(RM) -f $(top_srcdir)/build_debian.log
 	$(RM) -rf $(top_srcdir)/RPM_BUILD
 	$(RM) -f $(top_srcdir)/build_rpm.log
-	$(RM) -f $(top_srcdir)/exchange-*.tar.gz
+	$(RM) -f $(top_srcdir)/publications-*.tar.gz
 #	$(RM) -fr $(srcdir)/hierarchy/output
 #	$(RM) -rf $(top_srcdir)/docs/html
 
