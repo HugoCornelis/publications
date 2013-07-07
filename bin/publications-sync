@@ -5,7 +5,7 @@
 
 use strict;
 
-system "neurospaces_sync --enable publications publications --verbose";
+system "neurospaces_sync --enable publications publications";
 
 if ($?)
 {
@@ -13,5 +13,5 @@ if ($?)
 }
 else
 {
-    system "neurospaces_update --enable publications publications --verbose";
+    system "neurospaces_update --enable publications publications";
 }
